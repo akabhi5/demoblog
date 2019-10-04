@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for blog in object_list %}
+        <div class="container my-4">
+            <div class="card">
+                <!-- <h5 class="card-header">Featured</h5> -->
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'detail' blog.pk %}">{{ blog.title }}</a></h5>
+                    <p class="card-text">{{ blog.body|truncatewords:20 }}</p>
+                    <div class="text-right">
+                        <a href="{% url 'detail' blog.pk %}" class="btn btn-sm btn-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="jumbotron">
+            <div class="container">
+                <h2 class="text-center">Nothing to show</h2>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock content %}
